@@ -10,29 +10,24 @@ import org.apache.shiro.util.Factory;
 
 /**
  * Created by Rayest on 2016/8/12 0012.
+ * Realmï¼šåŸŸï¼Œshiro ä» Realm ä¸­è·å–éªŒè¯æ•°æ®
  */
 public class JdbcRealm {
     public static void main(String[] args) {
-        // ¶ÁÈ¡ÅäÖÃÎÄ¼ş£¬³õÊ¼»¯ SecurityManager ¹¤³§¡£ÅäÖÃÎÄ¼ş shiro.ini Ö®Ç°Òª¼ÓÉÏ classpath
         Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:jdbc_realm.ini");
-        // »ñÈ¡ SecurityManager ÊµÀı
         SecurityManager securityManager = factory.getInstance();
-        // °Ñ SecurityManager ÊµÀı°ó¶¨µ½ SecurityUtils
         SecurityUtils.setSecurityManager(securityManager);
-        // »ñÈ¡µ±Ç°Ö´ĞĞµÄÓÃ»§
         Subject currentUser = SecurityUtils.getSubject();
-        // ´´½¨ token ÁîÅÆ: ÓÃ»§/ÃÜÂë
-        UsernamePasswordToken token = new UsernamePasswordToken("ray", "12346");
+        UsernamePasswordToken token = new UsernamePasswordToken("ray", "123456");
         try{
-            // Éí·İÈÏÖ¤
+            // èº«ä»½è®¤è¯
             currentUser.login(token);
-            System.out.println("Éí·İÈÏÖ¤³É¹¦£¡");
+            System.out.println("èº«ä»½è®¤è¯æˆåŠŸï¼");
         }catch (AuthenticationException exception){
             exception.printStackTrace();
-            System.out.println("Éí·İÈÏÖ¤Ê§°Ü£¡");
+            System.out.println("èº«ä»½è®¤è¯å¤±è´¥ï¼");
         }
-        // ÍË³ö
+        // é€€å‡º
         currentUser.logout();
-
     }
 }

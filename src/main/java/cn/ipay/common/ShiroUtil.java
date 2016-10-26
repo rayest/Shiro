@@ -10,20 +10,23 @@ import org.apache.shiro.util.Factory;
 
 /**
  * Created by Rayest on 2016/8/12 0012.
+ * Â∞ÅË£Ö
  */
+
 public class ShiroUtil {
-    public static Subject login(String configFile, String userName, String password){
-         Factory<SecurityManager> factory = new IniSecurityManagerFactory(configFile);
-         SecurityManager securityManager = factory.getInstance();
-         SecurityUtils.setSecurityManager(securityManager);
-         Subject currentUser = SecurityUtils.getSubject();
-         UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
-        try{
-             currentUser.login(token);
-            System.out.println("…Ì∑›»œ÷§≥…π¶£°");
-        }catch (AuthenticationException exception){
+    // ÈÖçÁΩÆÊñá‰ª∂ configFile
+    public static Subject login(String configFile, String userName, String password) {
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory(configFile);
+        SecurityManager securityManager = factory.getInstance();
+        SecurityUtils.setSecurityManager(securityManager);
+        Subject currentUser = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
+        try {
+            currentUser.login(token);
+            System.out.println("Ë∫´‰ªΩËÆ§ËØÅÊàêÂäüÔºÅ");
+        } catch (AuthenticationException exception) {
             exception.printStackTrace();
-            System.out.println("…Ì∑›»œ÷§ ß∞‹£°");
+            System.out.println("Ë∫´‰ªΩËÆ§ËØÅÂ§±Ë¥•ÔºÅ");
         }
 
         return currentUser;
