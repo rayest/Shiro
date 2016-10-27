@@ -11,20 +11,15 @@
     </welcome-file-list>
 
     <!-- 监听器集成 web -->
-    <!--
-        <listener>
-            <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
-        </listener>
-    -->
+
+    <listener>
+        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+    </listener>
 
     <!-- 添加 shiro 支持，过滤器集成 web -->
     <filter>
         <filter-name>ShiroFilter</filter-name>
         <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
-        <init-param>
-            <param-name>configPath</param-name>
-            <param-value>/WEB-INF/shiro.ini</param-value>
-        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>ShiroFilter</filter-name>
