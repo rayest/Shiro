@@ -1,4 +1,4 @@
-package cn.rayest.helloWorld;
+package cn.ipay.common.helloWorld;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
