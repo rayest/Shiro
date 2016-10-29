@@ -2,6 +2,7 @@ package cn.rayest.login;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
 import javax.servlet.ServletException;
@@ -29,6 +30,11 @@ public class LoginServlet extends HttpServlet {
         UsernamePasswordToken token = new UsernamePasswordToken(userName, password); // 获取 token
         try {
             subject.login(token); // 登录
+            Session session = subject.getSession();
+            System.out.println("sessionId: " + session.getId());
+            System.out.println("sessionHost: " + session.getHost());
+            System.out.println("sessionTimeout: " + session.getTimeout());
+            session.setAttribute("info", "session 的数据");
             response.sendRedirect("success.jsp"); // 登录成功，则返回到成功页面
         } catch (Exception e) {
             e.printStackTrace(); // 登录错误，则打印错误信息

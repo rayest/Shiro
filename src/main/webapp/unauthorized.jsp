@@ -4,7 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-${info}
-登陆成功，欢迎！
+认证未通过，或权限不足！
 </body>
 </html>
