@@ -1,5 +1,6 @@
 package cn.rayest.login;
 
+import cn.rayest.security.MD5Service;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
@@ -27,8 +28,13 @@ public class LoginServlet extends HttpServlet {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         Subject subject = SecurityUtils.getSubject(); // 获取当前用户
-        UsernamePasswordToken token = new UsernamePasswordToken(userName, password); // 获取 token
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, MD5Service.md5(password, "rayest")); // 获取 token
         try {
+            if (subject.isRemembered()) {
+                System.out.println("------ isRemembered ------");
+            } else {
+                token.setRememberMe(true); // 设置记住密码
+            }
             subject.login(token); // 登录
             Session session = subject.getSession();
             System.out.println("sessionId: " + session.getId());
